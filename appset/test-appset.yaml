@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test-appset
+spec:
+  template:
+    metadata:
+      name: test-appset
+    spec:
+      project: pre-prod
+      source:
+        repoURL: https://github.com/acuD1/test-appset.git
+        directory: configs
+        recurse: true
+      destination:
+        namespace: argocd
+        name: in-cluster
+    syncPolicy:
+      automated: {}
